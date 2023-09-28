@@ -1,8 +1,6 @@
-class Matrix: pass
-class Vector: pass
-# from MatrixModule.__init__ import Matrix, Vector
+from MatrixModule._class import Matrix, Vector
 
-@staticmethod
+# @staticmethod
 def add(self, m):
     """Sum of matrix and matrix"""
     if not (isinstance(self, (Matrix, Vector)) and isinstance(m, (Matrix, Vector))) or self.shape != m.shape or type(self) != type(m):
@@ -14,7 +12,7 @@ def add(self, m):
             ret[y].append(self.data[y][x] + m.data[y][x])
     return type(self)(ret)
 
-@staticmethod
+# @staticmethod
 def radd(self, m):
     """Reverse sum of matrix and matrix"""
     if not (isinstance(self, (Matrix, Vector)) and isinstance(m, (Matrix, Vector))) or self.shape != m.shape or type(self) != type(m):

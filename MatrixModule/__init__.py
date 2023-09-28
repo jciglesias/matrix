@@ -1,24 +1,18 @@
-class Matrix:
-    from ._constructor import initMatrix as __init__
-    from ._addition import add
-    __add__ = classmethod(add)
-    # def __add__(self, m):
-    #     """Sum of matrix and matrix"""
-    #     if not (isinstance(self, (Matrix, Vector)) and isinstance(m, (Matrix, Vector))) or self.shape != m.shape or type(self) != type(m):
-    #         return NotImplemented
-    #     ret = []
-    #     for y in range(m.shape[0]):
-    #         ret.append([])
-    #         for x in range(m.shape[1]):
-    #             ret[y].append(self.data[y][x] + m.data[y][x])
-    #     return type(self)(ret)
-    from MatrixModule._addition import radd as __radd__
-    from MatrixModule._addition import T
-    from MatrixModule._substraction import __rsub__, __sub__
-    from MatrixModule._print import __repr__, __str__
+from ._class import Matrix, Vector
+from ._addition import add, radd, T
+from ._division import __rtruediv__, __truediv__
+from ._multiplication import mul, rmul
+from ._print import __repr__, __str__
+from ._substraction import __rsub__, __sub__
 
-class Vector(Matrix):
-    def initVector(self, arg):
-        super().__init__(arg)
-        if not (self.shape[0] != 1) ^ (self.shape[1] != 1):
-            raise TypeError("Argument is not a Vector")
+Matrix.__add__ = add
+Matrix.__mul__ = mul
+Matrix.__radd__ = radd
+Matrix.__sub__ = __sub__
+Matrix.__rsub__ = __rsub__
+Matrix.__truediv__ = __truediv__
+Matrix.__rtruediv__ = __rtruediv__
+Matrix.__rmul__ = rmul
+Matrix.__str__ = __str__
+Matrix.__repr__ = __repr__
+Matrix.T = T
