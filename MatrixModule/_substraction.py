@@ -1,9 +1,9 @@
-class Matrix: pass
-class Vector: pass
+from ._class import Matrix, Vector
 
-def __sub__(self, m):
+def sub(self, m):
     """Substraction of matrix and matrix"""
-    if not (isinstance(self, (Matrix, Vector)) and isinstance(m, (Matrix, Vector))) or self.shape != m.shape or type(self) != type(m):
+    if type(self) != type(m) or self.shape != m.shape or not isinstance(self, (Matrix, Vector)):
+        print(f"{type(self) != type(m)} or {self.shape != m.shape} or {not isinstance(self, (Matrix, Vector))}")
         return NotImplemented
     ret = []
     for y in range(m.shape[0]):
@@ -11,7 +11,7 @@ def __sub__(self, m):
         for x in range(m.shape[1]):
             ret[y].append(self.data[y][x] - m.data[y][x])
     return type(self)(ret)
-def __rsub__(self, m):
+def rsub(self, m):
     """reverse substraction of matrix and matrix"""
     if not (isinstance(self, (Matrix, Vector)) and isinstance(m, (Matrix, Vector))) or self.shape != m.shape or type(self) != type(m):
         return NotImplemented

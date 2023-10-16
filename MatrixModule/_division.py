@@ -1,5 +1,4 @@
-class Matrix: pass
-class Vector: pass
+from ._class import Matrix, Vector
 
 def __truediv__(self, scal):
     """Division of matrix and scalar"""
