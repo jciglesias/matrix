@@ -7,8 +7,9 @@ if __name__=="__main__":
     v3 = Vector([[0,0,1]])
     # m = Matrix([v1,v2,v3])
     # m2 = Matrix([[1,2,3],[0,10,-100]])
+    v4 = Vector([[1,2,3]])
+    v5 = Vector([[0,10,-100]])
     e1 = [10,-2,0.5]
     e2 = [10,-2]
     print(f"\nlinear combination:\n{[v1,v2,v3]}, {e1} = {linear_combination([v1,v2,v3], e1)}")
-    # print(f"m.shape: {m2.shape}, v.shape: {e2.shape}")
-    # print(f"{m2} * {e2} = {m2 * e2}")
+    print(f"{[v4,v5]}, {e2} = {linear_combination([v4,v5], e2)}")
