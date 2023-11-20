@@ -6,7 +6,7 @@ if __name__ == "__main__":
 	mat = [[6, 1 ,1],[4 ,-2 ,5],[2 ,8 ,7]]
 	print("matrix: ", Matrix(mat).determinant())
 	print("numpy: ", round( np.linalg.det(mat)))
-	mat = [[1, 0, 2, -1], [3, 0, 0, 5], [2, 1, 4, -3], [1, 0, 5, 0]]
+	mat = [[1, 2, 2, -1], [3, 0, 0, 5], [2, 1, 4, -3], [1, 0, 5, 0]]
 	print("matrix: ", Matrix(mat).determinant())
 	print("numpy: ", round( np.linalg.det(mat)))
 	mat = [[2., 0., 0.],[0., 2., 0.],[0., 0., 2.]]
@@ -21,4 +21,3 @@ if __name__ == "__main__":
 	mat = [[1,4,7],[10,0,3],[3,5,20]]
 	print("matrix: ", Matrix(mat).determinant())
 	print("numpy: ", round( np.linalg.det(mat)))
-
