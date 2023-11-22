@@ -16,6 +16,7 @@ def row_echelon(self):
             if mat[i][i] != 0 :
                 factor = mat[j][i] / mat[i][i]
             else:
+                factor = 0
                 for row in range(self.shape[0]):
                     if mat[row][i] != 0 and row != j:
                         factor = mat[j][i] / mat[row][i]
