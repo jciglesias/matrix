@@ -31,15 +31,13 @@ def inverse(self):
     return self.adjoint() / det
 
 def adjoint(self):
-    return Matrix([[1]]) if self.shape[0] else self.cofactor().T()
+    return Matrix([[1]]) if self.shape[0] == 1 else self.cofactor().T()
 
 def cofactor(self):
-    tmp = [[self.minor(row, column) * pow(row + column, -1) for column in range(self.shage[1])] for row in range(self.shape[0])]
-    return Matrix(tmp)
+    return Matrix([[self.minor(row, column).determinant() * [1,-1][(row + column) % 2] for column in range(self.shape[1])] for row in range(self.shape[0])])
 
 def minor(self, i, j):
     if isinstance(i, int) and isinstance(j, int) and i < self.shape[0] and j < self.shape[1]:
-        temp = [[self.data[row][column] for column in range(self.shape[1]) if row != i and column != j] for row in range(self.shape[0]) if row != i]
-        return Matrix(temp)
+        return Matrix([[self.data[row][column] for column in range(self.shape[1]) if row != i and column != j] for row in range(self.shape[0]) if row != i])
 
  
