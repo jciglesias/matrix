@@ -12,5 +12,5 @@ def norm_1(self):
 def norm_inf(self):
     ret = self[0][0]
     for i in self[0]:
-        ret = i if i > ret else ret
+        ret = abs(i) if abs(i) > abs(ret) else abs(ret)
     return ret
