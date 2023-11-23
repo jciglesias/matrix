@@ -9,5 +9,5 @@ if __name__=="__main__":
     v5 = Vector([[0,10,-100]])
     e1 = [10,-2,0.5]
     e2 = [10,-2]
-    print(f"\nlinear combination:\n{[v1,v2,v3]}, {e1} = {linear_combination([v1,v2,v3], e1)}")
-    print(f"{[v4,v5]}, {e2} = {linear_combination([v4,v5], e2)}")
+    print(linear_combination([v1,v2,v3], e1))
+    print(linear_combination([v4,v5], e2))
