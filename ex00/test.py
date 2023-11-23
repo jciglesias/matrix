@@ -1,14 +1,61 @@
 from MatrixModule import Matrix, Vector
+import numpy as np
 
 if __name__=="__main__":
-    m = Matrix([[1],[2]])
-    m2 = Matrix([[1,2]])
-    v = Vector([[1,2,3]])
-    print(type(m))
-    print(type(v))
-    print(f"\naddition:\n{m} + {m} = {m + m}")
-    print(f"{v} + {v} = {v + v}")
-    print(f"\nsubstraction:\n{m} - {m} = {m - m}")
-    print(f"{v} - {v} = {v - v}")
-    print(f"\nscalar:\n{m} * 4 = {m * 4}")
-    print(f"{v} * 4 = {v * 4}")
+    m = [[1., 2.],[3., 4.]]
+    m2 = [[7., 4.],[-2., 2.]]
+    v = [[2., 3.]]
+    v2 = [[5., 7.]]
+    print(type(Matrix(m)))
+    print(type(Vector(v)))
+    print(f"\n<--addition-->\n")
+    mod = Matrix(m) + Matrix(m2)
+    nump = np.array(m) + np.array(m2)
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("Matrix:", dif)
+    mod = Vector(v) + Vector(v2)
+    nump = np.array(v) + np.array(v2)
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("vector:", dif)
+    print(f"\n<--substraction-->\n")
+    mod = Matrix(m) - Matrix(m2)
+    nump = np.array(m) - np.array(m2)
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("Matrix:", dif)
+    mod = Vector(v) - Vector(v2)
+    nump = np.array(v) - np.array(v2)
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("vector:", dif)
+    print(f"\n<--scalar-->\n")
+    mod = Matrix(m) * 2
+    nump = np.array(m) * 2
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("Matrix:", dif)
+    mod = Vector(v) * 2
+    nump = np.array(v) * 2
+    dif = True
+    for row in range(nump.shape[0]):
+        for column in range(nump.shape[1]):
+            if nump[row][column] != mod[row][column]:
+                dif = False
+    print("vector:", dif)
