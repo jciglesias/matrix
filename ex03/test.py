@@ -1,6 +1,6 @@
 from MatrixModule import Matrix, Vector
 
 if __name__=="__main__":
-    v = Vector([[-1,6]])
-    v2 = Vector([[3,2]])
-    print(v.dot(v2))
+    print(Vector([[0,0]]).dot(Vector([[1,1]])))
+    print(Vector([[1,1]]).dot(Vector([[1,1]])))
+    print(Vector([[-1,6]]).dot(Vector([[3,2]])))
