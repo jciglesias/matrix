@@ -1,13 +1,13 @@
 from ._class import Matrix, Vector
 from ._addition import add, radd, T, iadd
 from ._division import __rtruediv__, __truediv__
-from ._multiplication import mul, rmul
+from ._multiplication import mul, rmul, determinant
 from ._print import __repr__, __str__
 from ._substraction import rsub, sub
 from ._iterator import it, getitm
 from ._norm import norm, norm_1, norm_inf
 from ._trace import trace
-from ._row_echelon import row_echelon
+from ._row_echelon import row_echelon, inverse, adjoint, cofactor, minor, rank
 
 Matrix.__add__ = add
 Matrix.__mul__ = mul
@@ -25,6 +25,12 @@ Matrix.__iadd__ = iadd
 Matrix.T = T
 Matrix.trace = trace
 Matrix.row_echelon = row_echelon
+Matrix.rank = rank
+Matrix.determinant = determinant
+Matrix.minor = minor
+Matrix.inverse = inverse
+Matrix.adjoint = adjoint
+Matrix.cofactor = cofactor
 Vector.norm = norm
 Vector.norm_1 = norm_1
 Vector.norm_inf = norm_inf

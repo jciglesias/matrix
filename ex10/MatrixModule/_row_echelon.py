@@ -1,59 +1,55 @@
 from ._class import Matrix
+from copy import deepcopy
 
 def row_echelon(self):
-    for i in range(self.shape[0]):
-        pivot = abs(self.data[i][i])
+    mat = deepcopy(self.data)
+    l_row = self.shape[0]
+    l_column = self.shape[1]
+    for i in range(l_row):
+        pivot = abs(mat[i][i if i < (l_column - 1) else (l_column - 1)])
         pivot_row = i
-        for j in range(i + 1, self.shape[0]):
-            if abs(self.data[j][i]) > pivot and pivot != 1:
-                pivot = abs(self.data[j][i])
+        for j in range(i + 1, l_row):
+            if i < (l_column - 1) and abs(mat[j][i]) > pivot and pivot != 1:
+                pivot = abs(mat[j][i])
                 pivot_row = j
-            if pivot_row != i:
-                self.data[i], self.data[pivot_row] = self.data[pivot_row], self.data[i]
+            if i < (l_column - 1) and pivot_row != i:
+                mat[i], mat[pivot_row] = mat[pivot_row], mat[i]
         for j in range(i + 1, self.shape[0]):
-            if self.data[i][i] != 0 :
-                factor = self.data[j][i] / self.data[i][i]
+            if mat[i][i if i < (l_column - 1) else (l_column - 1)] != 0 :
+                factor = mat[j][i if i < (l_column - 1) else (l_column - 1)] / mat[i][i if i < (l_column - 1) else (l_column - 1)]
             else:
-                factor = self.data[j][i] / self.data[0][i]
+                factor = 0
+                for row in range(self.shape[0]):
+                    if mat[row][i if i < (l_column - 1) else (l_column - 1)] != 0 and row != j:
+                        factor = mat[j][i if i < (l_column - 1) else (l_column - 1)] / mat[row][i if i < (l_column - 1) else (l_column - 1)]
             for k in range(i, self.shape[1]):
-                self.data[j][k] -= factor * self.data[i][k]
-    return self
+                mat[j][k] -= factor * mat[i][k]
+    return type(self)(mat)
 
-# def gcd(a, b): 
-#     if (a == 0): 
-#         return b 
-#     return gcd(b % a, a) 
+def rank(self):
+    mat = self.row_echelon()
+    rnk = 0
+    for row in mat:
+        for column in row:
+            if column != 0:
+                rnk += 1
+                break
+    return rnk if rnk < self.shape[0] and rnk < self.shape[1] else self.shape[0] if self.shape[0] < self.shape[1] else self.shape[1]
 
-# def lcm(a, b):
-#     return (a * b) / gcd(a, b) 
+def inverse(self):
+    det = self.determinant()
+    if det != 0:
+        pass
+    return self.adjoint() / det
 
-# def gauss_elimination(A):
-#     """
-#     Gauss elimination method [By Bottom Science].
-  
-#     A - the coefficient matrix (an n x n matrix)
-#     b - the right-hand side column vector (an n x 1 matrix)
-  
-#     """
-  
-#     n = len(A)
-  
-#     # Perform Gauss elimination
-#     for i in range(n):
-#         # Find the pivot element
-#         pivot = abs(A[i][i])
-#         pivot_row = i
-#         for j in range(i+1, n):
-#             if abs(A[j][i]) > pivot:
-#               pivot = abs(A[j][i])
-#               pivot_row = j
-  
-#         # Swap the pivot row with the current row (if necessary)
-#         if pivot_row != i:
-#             A[i], A[pivot_row] = A[pivot_row], A[i]
-  
-#         # Eliminate the current variable from the other equations
-#         for j in range(i+1, n):
-#             factor = A[j][i] / A[i][i]
-#             for k in range(i, n):
-#                 A[j][k] -= factor * A[i][k]
+def adjoint(self):
+    return Matrix([[1]]) if self.shape[0] == 1 else self.cofactor().T()
+
+def cofactor(self):
+    return Matrix([[self.minor(row, column).determinant() * [1,-1][(row + column) % 2] for column in range(self.shape[1])] for row in range(self.shape[0])])
+
+def minor(self, i, j):
+    if isinstance(i, int) and isinstance(j, int) and i < self.shape[0] and j < self.shape[1]:
+        return Matrix([[self.data[row][column] for column in range(self.shape[1]) if row != i and column != j] for row in range(self.shape[0]) if row != i])
+
+ 
