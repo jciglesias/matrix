@@ -74,51 +74,12 @@ def rmul(self, m):
         return type(self)(ret)
     return NotImplemented
 
-# Python program to find Determinant of a matrix
-
-
 def determinant(self):
     mat = self.row_echelon()
     ret = 1
     for i in range(self.shape[0]):
         ret *= mat[i][i]
     return round(ret)
-    # if self.shape[0] != self.shape[1]:
-    #     return
-    # n = self.shape[0]
-    # mat = deepcopy(self.data)
-    # total = 1
-    # det = 1 
-
-    # for i in range(n):
-    #     index = i
-
-    #     while(index < n and mat[index][i] == 0):
-    #         index += 1
-
-    #     if(index == n):
-    #         continue
-        
-    #     if(index != i):
-    #         mat[index], mat[i] = mat[i], mat[index]
-    #         det *= pow(-1, index-i)
-
-    #     temp = copy(mat[i])
-
-    #     for j in range(i + 1, n):
-    #         num1 = temp[i]
-    #         num2 = mat[j][i]
-    #         for k in range(n):
-    #             print(f"mat[{j}][{k}] = ({num1} * {mat[j][k]}) - ({num2} * {temp[k]})")
-    #             mat[j][k] = (num1 * mat[j][k]) - (num2 * temp[k])
-    #         print(f"{total} *= {num1}")
-    #         total *= num1
-
-    # for i in range(n):
-    #     print(f"det = {det} *= {mat[i][i]}")
-    #     det *= mat[i][i]
-
-    # return det/total
 
 def linear_combination(self, m):
     pass
