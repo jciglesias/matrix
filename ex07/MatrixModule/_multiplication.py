@@ -1,4 +1,5 @@
 from ._class import Matrix, Vector
+from copy import deepcopy, copy
 
 def mul(self, m):
     """Multiplication of matrix and matrix or scalar"""
@@ -73,5 +74,12 @@ def rmul(self, m):
         return type(self)(ret)
     return NotImplemented
 
-def linear_combination(selrf, m):
+def determinant(self):
+    mat = self.row_echelon()
+    ret = 1
+    for i in range(self.shape[0]):
+        ret *= mat[i][i]
+    return round(ret)
+
+def linear_combination(self, m):
     pass
