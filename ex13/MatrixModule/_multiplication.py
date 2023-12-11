@@ -76,10 +76,10 @@ def rmul(self, m):
 
 def determinant(self):
     mat = self.row_echelon()
-    ret = 1
+    # ret = 1
     for i in range(self.shape[0]):
-        ret *= mat[i][i]
-    return round(ret)
+        self.det *= mat[i][i]
+    return round(self.det)
 
 def linear_combination(self, m):
     pass
