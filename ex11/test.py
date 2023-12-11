@@ -1,4 +1,4 @@
-from MatrixModule import Matrix, Vector
+from MatrixModule import Matrix
 
 if __name__ == "__main__":
 	print(Matrix([[1 ,-1],[-1,1]]).determinant())
