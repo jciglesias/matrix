@@ -2,6 +2,7 @@ from ._class import Matrix
 from copy import deepcopy
 
 def row_echelon(self):
+    self.det = 1
     mat = deepcopy(self.data)
     l_row = self.shape[0]
     l_column = self.shape[1]
@@ -13,6 +14,7 @@ def row_echelon(self):
                 pivot = abs(mat[j][i])
                 pivot_row = j
             if i < (l_column - 1) and pivot_row != i:
+                self.det *= -1
                 mat[i], mat[pivot_row] = mat[pivot_row], mat[i]
         for j in range(i + 1, self.shape[0]):
             if mat[i][i if i < (l_column - 1) else (l_column - 1)] != 0 :
@@ -39,8 +41,7 @@ def rank(self):
 def inverse(self):
     det = self.determinant()
     if det != 0:
-        pass
-    return self.adjoint() / det
+        return self.adjoint() / det
 
 def adjoint(self):
     return Matrix([[1]]) if self.shape[0] == 1 else self.cofactor().T()
