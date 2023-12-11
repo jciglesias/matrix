@@ -7,7 +7,10 @@ def __str__(self) -> str:
         for column in range(self.shape[1]):
             if column == 0:
                 strm += "["
-            strm += f"{round(self.data[row][column], 6):9f} "
+            if len(f"{self.data[row][column]} ") > 6:
+                strm += f"{self.data[row][column]:.5f} "
+            else:
+                strm += f"{self.data[row][column]} "
             if column == (self.shape[1]-1) and row != (self.shape[0] - 1):
                 strm += "]\n "
         if row == (self.shape[0] - 1):
